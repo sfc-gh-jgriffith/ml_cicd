@@ -29,6 +29,7 @@ jobs:
       - name: Run a multi-line script
         run: |
           pip install snowflake
+          echo TEST
           echo $ACCOUNT
         env: 
           ACCOUNT: ${{ secrets.ACCOUNT }}
