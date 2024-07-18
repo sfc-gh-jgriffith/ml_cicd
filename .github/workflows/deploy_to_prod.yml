@@ -29,4 +29,4 @@ jobs:
       - name: Run a multi-line script
         run: |
           pip install snowflake
-          cat train_model_notebook.ipynb
+          echo ${{ secrets.ACCOUNT }}
