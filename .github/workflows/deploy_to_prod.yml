@@ -29,8 +29,16 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
-          pip install snowflake
-          echo TEST
-          echo $ACCOUNT
+          pip install pip install snowflake-cli-labs   
+          snow notebook create DIAMONDS_PROD \
+            --notebook-file '@$DATABASE.GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
+            --database $DATABASE \
+            --schema NOTEBOOKS \
+            --warehouse ML_HOL_WH
+          snow notebook execute DIAMONDS_PROD \
+            --database $DATABASE \
+            --schema NOTEBOOKS
         env: 
           ACCOUNT: ${{ secrets.ACCOUNT }}
+          PASSWORD: ${{ secrets.PASSWORD }}
+          DATABASE: ${{ vars.DATABASE }}
