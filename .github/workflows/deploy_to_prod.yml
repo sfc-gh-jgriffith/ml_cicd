@@ -38,6 +38,7 @@ jobs:
             --user $USER \
             --password $PASSWORD \
             --database $DATABASE \
+            --warehouse $WAREHOUSE
 
           snow connection set-default PROD
           
