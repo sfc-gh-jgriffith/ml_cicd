@@ -34,6 +34,7 @@ jobs:
           snow connection add \
             --connection-name PROD \
             --account $ACCOUNT \
+            --role $ROLE \
             --user $USER \
             --password $PASSWORD \
             --database $DATABASE \
@@ -42,14 +43,15 @@ jobs:
           
           snow notebook create DIAMONDS_PROD \
             --notebook-file '@$DATABASE.GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
-            --schema NOTEBOOKS \
-            --warehouse ML_HOL_WH
+            --schema NOTEBOOKS 
           
           snow notebook execute DIAMONDS_PROD \
             --database $DATABASE \
             --schema NOTEBOOKS
         env: 
-          ACCOUNT:  ${{ secrets.ACCOUNT }}
-          USER:     ${{ secrets.USER }}
-          PASSWORD: ${{ secrets.PASSWORD }}
-          DATABASE: ${{ vars.DATABASE }}
+          ACCOUNT:   ${{ secrets.ACCOUNT }}
+          USER:      ${{ secrets.USER }}
+          PASSWORD:  ${{ secrets.PASSWORD }}
+          DATABASE:  ${{ vars.DATABASE }}
+          ROLE:      ${{ vars.ROLE }}
+          WAREHOUSE: ${{ vars.WAREHOUSE }}
