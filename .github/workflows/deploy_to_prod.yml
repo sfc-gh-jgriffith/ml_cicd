@@ -33,11 +33,13 @@ jobs:
           
           snow notebook create DIAMONDS_PROD \
             --notebook-file '@$DATABASE.GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
-            --schema NOTEBOOKS 
+            --schema NOTEBOOKS  \
+            --temporary-connection
           
           snow notebook execute DIAMONDS_PROD \
             --database $SNOWFLAKE_DATABASE \
-            --schema NOTEBOOKS
+            --schema NOTEBOOKS \
+            --temporary-connection
         env: 
           SNOWFLAKE_ACCOUNT:   ${{ secrets.ACCOUNT }}
           SNOWFLAKE_USER:      ${{ secrets.USER }}
