@@ -32,7 +32,7 @@ jobs:
           pip install snowflake-cli-labs  
           
           snow notebook create DIAMONDS_PROD \
-            --notebook-file '@$DATABASE.GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
+            --notebook-file 'GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
             --schema NOTEBOOKS  \
             --temporary-connection
           
