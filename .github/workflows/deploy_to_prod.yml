@@ -31,28 +31,17 @@ jobs:
         run: |
           pip install snowflake-cli-labs  
           
-          snow connection add \
-            --connection-name PROD \
-            --account $ACCOUNT \
-            --role $ROLE \
-            --user $USER \
-            --password $PASSWORD \
-            --database $DATABASE \
-            --warehouse $WAREHOUSE
-
-          snow connection set-default PROD
-          
           snow notebook create DIAMONDS_PROD \
             --notebook-file '@$DATABASE.GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
             --schema NOTEBOOKS 
           
           snow notebook execute DIAMONDS_PROD \
-            --database $DATABASE \
+            --database $SNOWFLAKE_DATABASE \
             --schema NOTEBOOKS
         env: 
-          ACCOUNT:   ${{ secrets.ACCOUNT }}
-          USER:      ${{ secrets.USER }}
-          PASSWORD:  ${{ secrets.PASSWORD }}
-          DATABASE:  ${{ vars.DATABASE }}
-          ROLE:      ${{ vars.ROLE }}
-          WAREHOUSE: ${{ vars.WAREHOUSE }}
+          SNOWFLAKE_ACCOUNT:   ${{ secrets.ACCOUNT }}
+          SNOWFLAKE_USER:      ${{ secrets.USER }}
+          SNOWFLAKE_PASSWORD:  ${{ secrets.PASSWORD }}
+          SNOWFLAKE_DATABASE:  ${{ vars.DATABASE }}
+          SNOWFLAKE_ROLE:      ${{ vars.ROLE }}
+          SNOWFLAKE_WAREHOUSE: ${{ vars.WAREHOUSE }}
