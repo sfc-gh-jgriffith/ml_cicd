@@ -32,11 +32,13 @@ jobs:
           pip install snowflake-cli-labs  
           
           snow connection add \
-            --connection-name PROD
-            --account $ACCOUNT
-            --user $USER
-            --password $PASSWORD
-            --database $DATABASE
+            --connection-name PROD \
+            --account $ACCOUNT \
+            --user $USER \
+            --password $PASSWORD \
+            --database $DATABASE \
+
+          snow connection set-default PROD
           
           snow notebook create DIAMONDS_PROD \
             --notebook-file '@$DATABASE.GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
