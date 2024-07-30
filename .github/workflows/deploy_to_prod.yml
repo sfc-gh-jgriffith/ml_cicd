@@ -30,6 +30,8 @@ jobs:
       - name: Run a multi-line script
         run: |
           pip install snowflake-cli-labs  
+
+          snow git fetch @GIT.ML_GIT_STAGE
           
           snow notebook create DIAMONDS_PROD \
             --notebook-file '@GIT.ML_GIT_STAGE/branches/main/Diamonds Model Fitting/notebook_app.ipynb' \
